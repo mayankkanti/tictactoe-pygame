@@ -56,8 +56,6 @@ def pvp(screen, clock):
     
     turn = 0 # even turns are player1 and odd turns are player2
     board = np.full((3, 3), None)
-    print(board)
-    
     select = pygame.mixer.Sound("../tictactoe-pygame/src/assets/sounds/select1.wav")
     while True:
         for event in pygame.event.get():
@@ -68,29 +66,24 @@ def pvp(screen, clock):
                 if event.key == pygame.K_ESCAPE:
                     return "game_select"
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    print(event.pos)
-            if event.type == pygame.MOUSEBUTTONDOWN:
                 mouseX = event.pos[0]  # x
                 mouseY = event.pos[1]  # y
-
-                # Determine clicked cell
-                clicked_row, clicked_col = None, None
-                for row in range(3):
-                    for col in range(3):
-                        if cell_boundaries[row][col][0] <= mouseX <= cell_boundaries[row][col][2] and \
-                        cell_boundaries[row][col][1] <= mouseY <= cell_boundaries[row][col][3]:
-                            clicked_row, clicked_col = row, col
-                            print(f"Col: {clicked_col} Row: {clicked_row}")
-                if clicked_row is not None and clicked_col is not None:
-                    if board[clicked_row][clicked_col] is None:
-                        if turn % 2 == 0:
-                            board[clicked_row][clicked_col] = "X"
-                        else:
-                            board[clicked_row][clicked_col] = "O"
-                        turn += 1
-                        select.play()
-                        print(board)
+                if event.button == 1:
+                    clicked_row, clicked_col = None, None
+                    for row in range(3):
+                        for col in range(3):
+                            if cell_boundaries[row][col][0] <= mouseX <= cell_boundaries[row][col][2] and \
+                            cell_boundaries[row][col][1] <= mouseY <= cell_boundaries[row][col][3]:
+                                clicked_row, clicked_col = row, col
+                                print(f"Col: {clicked_col} Row: {clicked_row}")
+                    if clicked_row is not None and clicked_col is not None:
+                        if board[clicked_row][clicked_col] is None:
+                            if turn % 2 == 0:
+                                board[clicked_row][clicked_col] = "X"
+                            else:
+                                board[clicked_row][clicked_col] = "O"
+                            turn += 1
+                            select.play()
             
         
         screen.fill((0, 0, 0))

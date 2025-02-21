@@ -3,6 +3,7 @@
 import pygame
 from utils import clock
 from game_states.main_menu import main_menu
+from game_states.game_select import game_select
 
 pygame.init()
 
@@ -23,3 +24,5 @@ while True:
     if game_state == "main_menu":
         game_state = main_menu(screen, clock)
         print("Leaving main menu")
+    if game_state == "game_select":
+        game_state = game_select(screen, clock)

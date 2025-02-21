@@ -30,7 +30,7 @@ def main_menu(screen, clock):
                 quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
-                    return "running"
+                    return "game_select"
         
         tilted_alpha += alpha_direction * 5
         if tilted_alpha >= 255 or tilted_alpha <= 0:
@@ -38,8 +38,6 @@ def main_menu(screen, clock):
         
         screen.fill((0, 0, 0))
         main_menu_text(screen, tilted_alpha) 
-        
-        
         
         pygame.display.update()
         clock.tick(60)

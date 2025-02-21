@@ -23,6 +23,7 @@ def main_menu_text(screen, tilted_alpha):
 def main_menu(screen, clock):
     tilted_alpha = 255
     alpha_direction = -1
+    select = pygame.mixer.Sound("../tictactoe-pygame/src/assets/sounds/select.mp3")
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -30,6 +31,7 @@ def main_menu(screen, clock):
                 quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
+                    select.play()
                     return "game_select"
         
         tilted_alpha += alpha_direction * 5

@@ -72,7 +72,6 @@ def game_select(screen, clock):
                 quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
-                    print(f"Selected option: {options[selected_option]}")
                     select.play()
                     return options[selected_option]
                 if event.key == pygame.K_UP:

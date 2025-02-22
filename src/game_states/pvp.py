@@ -27,20 +27,29 @@ def draw_moves(screen, board, cell_boundaries):
 
 
 
-def check_winner(board):
+def animate_win_diagonal(screen, board, cell_boundaries, row1, col1, row2, col2):
+    pygame.draw.line(screen, (0, 255, 0), (cell_boundaries[row1][col1][0] + 25, cell_boundaries[row1][col1][1] + 25),(cell_boundaries[row2][col2][2] - 25, cell_boundaries[row2][col2][3] - 25), 5)
+    pygame.display.flip()
+    pygame.time.delay(1000)
+
+def check_winner(screen, board, cell_boundaries):
     # returns the winner else None
     # checks rows 
     for row in range(3):
         if board[row][0] == board[row][1] == board[row][2] and board[row][0] is not None:
+            animate_win_diagonal(screen, board, cell_boundaries, row, 0, row, 2)
             return board[row][0]
     # checks columns
     for col in range(3):
         if board[0][col] == board[1][col] == board[2][col] and board[0][col] is not None:
+            animate_win_diagonal(screen, board, cell_boundaries, 0, col, 2, col)
             return board[0][col]
     # checks diagonals
     if board[0][0] == board[1][1] == board[2][2] and board[0][0] is not None:
+        animate_win_diagonal(screen, board, cell_boundaries, 0, 0, 2, 2)
         return board[0][0]
     if board[0][2] == board[1][1] == board[2][0] and board[0][2] is not None:
+        animate_win_diagonal(screen, board, cell_boundaries, 0, 2, 2, 0)
         return board[0][2]
     # checks for draw
     if np.all(board != None):
@@ -75,7 +84,6 @@ def pvp(screen, clock):
                             if cell_boundaries[row][col][0] <= mouseX <= cell_boundaries[row][col][2] and \
                             cell_boundaries[row][col][1] <= mouseY <= cell_boundaries[row][col][3]:
                                 clicked_row, clicked_col = row, col
-                                print(f"Col: {clicked_col} Row: {clicked_row}")
                     if clicked_row is not None and clicked_col is not None:
                         if board[clicked_row][clicked_col] is None:
                             if turn % 2 == 0:
@@ -83,9 +91,7 @@ def pvp(screen, clock):
                             else:
                                 board[clicked_row][clicked_col] = "O"
                             turn += 1
-                            select.play()
-            
-        
+                            select.play() 
         screen.fill((0, 0, 0))
         if turn % 2 == 0:
             font = pygame.font.Font("../tictactoe-pygame/src/assets/fonts/PressStart2P.ttf", 20)
@@ -99,8 +105,8 @@ def pvp(screen, clock):
             screen.blit(title_text, title_rect)
         draw_board(screen)
         draw_moves(screen, board, cell_boundaries)
-        if check_winner(board) is not None:
-            game_state = end(screen, clock, check_winner(board))
+        if check_winner(screen, board, cell_boundaries) is not None:
+            game_state = end(screen, clock, check_winner(screen, board, cell_boundaries))
             return game_state
             
         pygame.display.flip()    

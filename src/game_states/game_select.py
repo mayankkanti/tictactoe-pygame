@@ -1,7 +1,7 @@
 import pygame
 
 
-def menu_text(screen,font1, font2, tilted_alpha1, tilted_alpha2):
+def menu_text(screen,font1, font2):
     
     font = pygame.font.Font("../tictactoe-pygame/src/assets/fonts/PressStart2P.ttf", 50)
     title_text = font.render("Tic Tac Toe", True, (255, 255, 255))
@@ -21,7 +21,7 @@ def menu_text(screen,font1, font2, tilted_alpha1, tilted_alpha2):
     if font2 == 30: pygame.draw.line(screen, (255, 255, 255), (150, 400), (450, 400), 2)
     
     font = pygame.font.Font("../tictactoe-pygame/src/assets/fonts/PressStart2P.ttf", 15)
-    player_text = font.render("(Coming Soon...)", True, (255, 255, 255))
+    player_text = font.render("(literally impossible...)", True, (255, 255, 255))
     player_rect = player_text.get_rect(center=(300, 380))
     screen.blit(player_text, player_rect)
     
@@ -34,7 +34,6 @@ def menu_text(screen,font1, font2, tilted_alpha1, tilted_alpha2):
     up_text = font.render("Up", True, (255, 255, 255))
     up_rect = up_text.get_rect(center=(225, 500))
     screen.blit(up_text, up_rect)
-    
     
     down_surface = pygame.image.load("../tictactoe-pygame/src/assets/images/down.png")
     down_surface = pygame.transform.scale(down_surface, (32, 32))
@@ -53,10 +52,6 @@ def menu_text(screen,font1, font2, tilted_alpha1, tilted_alpha2):
     pygame.display.flip()
 
 def game_select(screen, clock):
-    tilted_alpha1 = 255
-    alpha_direction1 = -1
-    tilted_alpha2 = 255
-    alpha_direction2 = -1
     options = ["PvP", "PvB"]
     selected_option = 0
     
@@ -91,6 +86,6 @@ def game_select(screen, clock):
             font1 = 25
             font2 = 30
         screen.fill((0, 0, 0))
-        menu_text(screen, font1, font2, tilted_alpha1, tilted_alpha2) 
+        menu_text(screen, font1, font2) 
         pygame.display.update()
         clock.tick(60)

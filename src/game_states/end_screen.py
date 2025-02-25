@@ -7,7 +7,7 @@ def end(screen, clock, result):
                 quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    return "main_menu"
+                    return "game_select"
         screen.fill((0, 0, 0))
         font = pygame.font.Font("../tictactoe-pygame/src/assets/fonts/PressStart2P.ttf", 35)
         if result == 'draw':

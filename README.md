@@ -2,6 +2,8 @@
 
 This is a simple Tic Tac Toe game implemented using Pygame. The game includes a main menu, game selection screen, and two game modes: Player vs Player (PvP) and Player vs Bot (PvB).
 
+This is me trying to implement the [minimax algorithm](https://en.wikipedia.org/wiki/Minimax) for a game of tic-tac-toe!
+
 ## Installation
 
 1. Clone the repository:
@@ -27,7 +29,7 @@ python src/main.py
 ## Game Modes
 
 - **Player vs Player (PvP)**: Two players can play against each other.
-- **Player vs Bot (PvB)**: Coming soon...
+- **Player vs Bot (PvB)**: Play against an unbeatable bot.
 
 ## Controls
 

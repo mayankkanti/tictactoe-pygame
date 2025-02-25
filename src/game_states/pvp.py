@@ -25,8 +25,6 @@ def draw_moves(screen, board, cell_boundaries):
                     o_rect = o_img.get_rect(center=(center_x, center_y))
                     screen.blit(o_img, o_rect)
 
-
-
 def animate_win_diagonal(screen, board, cell_boundaries, row1, col1, row2, col2):
     pygame.draw.line(screen, (0, 255, 0), (cell_boundaries[row1][col1][0] + 25, cell_boundaries[row1][col1][1] + 25),(cell_boundaries[row2][col2][2] - 25, cell_boundaries[row2][col2][3] - 25), 5)
     pygame.display.flip()
